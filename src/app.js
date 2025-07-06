@@ -4,30 +4,22 @@ const express = require('express');
    
  const port = 7777;
 
-  app.use("/user" , (req, res ,next) =>{
+  app.use("/" , (req, res ,next) =>{
      // Route Handler
-      console.log(`Handling the route user`);
+      console.log(`Handling the route`);
       next();
-     //  res.send("Response !!");
-  }, 
-  (req, res , next) =>{
-     // Route Handler
-      console.log(`Handling the route user 2`)
-     //  res.send("2 Response !!")
-     next();
-  },
-   (req, res , next) =>{
-     // Route Handler
-      console.log(`Handling the route user 3`)
-     //  res.send("3 Response !!")
-     next();
-  },
-   (req, res , next) =>{
-     // Route Handler
-      console.log(`Handling the route user 4`)
-      res.send("4 Response !!")
-  }
-
+  });
+   app.get("/user" , (req , res , next) => {
+      console.log(`Handling the route user 2`);
+      next();
+   },
+   (req,res , next) => {
+     //  res.send("1st Route Handler");
+      next();
+   },
+    (req,res , next) => {
+      res.send("2nd Route Handler");
+   }
 )
  app.listen(port, () => {
       console.log(`Serveris running port ${port}`)
