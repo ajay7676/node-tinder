@@ -1,26 +1,28 @@
 const express = require('express');
+const { adminAuth , userAuth } = require('./middleware/auth');
 
  const app = express();
    
- const port = 7777;
+ const port  = 7777;
 
-  app.use("/" , (req, res ,next) =>{
-     // Route Handler
-      console.log(`Handling the route`);
-      next();
-  });
-   app.get("/user" , (req , res , next) => {
-      console.log(`Handling the route user 2`);
-      next();
-   },
-   (req,res , next) => {
-     //  res.send("1st Route Handler");
-      next();
-   },
-    (req,res , next) => {
-      res.send("2nd Route Handler");
-   }
-)
+  app.use("/admin" , adminAuth);
+
+//   app.use("/user" , userAuth);
+   app.post("/user/login" , (req,res) => {
+      res.send("User Logged is successful")
+   })
+  app.get("/user" ,userAuth , (req,res) => {
+      console.log("User Controller is  running...")
+      res.send("User Data sent !!!!")
+
+  })
+ app.get("/admin/getAllData" , (req,res) => {
+        res.send("All Data Sent");
+ })
+ app.get("/admin/deleteUser" , (req,res) => {
+      res.send("Deleated User");
+ })
+
  app.listen(port, () => {
       console.log(`Serveris running port ${port}`)
  })
