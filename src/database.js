@@ -9,9 +9,9 @@
 // Install Mongodb Compass into system
 
 const { MongoClient } = require("mongodb");
+const { url } = require("./constants");
 
-const url =
-  "mongodb+srv://ajaychauhanpp44:e9I5HdTHAPB6YNLw@namaste-node.5r8ejyg.mongodb.net/";
+
 
 const client = new MongoClient(url, {
   tlsAllowInvalidCertificates: true,
