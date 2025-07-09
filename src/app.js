@@ -1,29 +1,17 @@
-const express = require('express');
+const express = require("express");
+const connectDB = require("./config/database");
 
- const app = express();
-   
- const port  = 7777;
+const app = express();
 
-   
-   app.use("/" , (err ,req,res , next ) =>{
-           console.log("Error routing is working")
-     if(err){
-          res.status(500).send("something went wrong")
-     }
+const port = 7777;
 
-   })
-
- app.get("/getUserData" , (req,res) => {
-      try {
-          throw new Error("sdsdsdsd");
-      res.send("User Data sent")
-      } catch (error) {
-            res.status(500).send("Some Error contact support team")
-      }
-       
-
-   });
-
- app.listen(port, () => {
-      console.log(`Serveris running port ${port}`)
- })
+connectDB()
+  .then(() => {
+    console.log(`Database connection is established`);
+    app.listen(port, () => {
+      console.log(`Serveris running port ${port}`);
+    });
+  })
+  .catch(() => {
+    console.error(`Database can not be connected`);
+  });
