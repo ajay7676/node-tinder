@@ -17,4 +17,6 @@
 => Create Schema & made model 
 => Configure Model into app.js to insert data in database
 
-=> make post api ("/signup)
+=> make post api ("/signup")
+=> Wrap db save with try catch block to hanndle properly
+=>  
