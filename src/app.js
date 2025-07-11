@@ -6,16 +6,12 @@ const app = express();
 
 const port = 7777;
 
-// app.use(express.json());
+app.use(express.json());
 
 app.post("/signup" , async(req , res) => {
+  //  console.log(req.body)
       // Creating  a new instance of the User Model
-        const user = new UserModel({
-          firstName : "Rahul" , 
-          lastName: "Chauhan",
-          emailId: "rahul@gmail.com",
-          password : "rahul@3$"
-        })
+        const user = new UserModel(req.body)
 
         try {
            await user.save();
