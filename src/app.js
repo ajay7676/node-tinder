@@ -64,7 +64,7 @@ app.get("/feed" ,async(req, res) => {
     try {
       const users =  await UserModel.find({})
        if(!users){
-         res.send("Users are not exist");
+         res.status(404).send("Users are not exist");
        }else{
            res.send(users)
        }
@@ -74,6 +74,45 @@ app.get("/feed" ,async(req, res) => {
     }
 
 
+
+})
+// Delete an User from the Database
+
+app.delete("/user" , async(req,res) =>{
+   const userId = req.body.userId
+   try {
+    const user = await UserModel.findOneAndDelete({ _id:  userId});
+     console.log(user)
+      res.send("User is Delete Successfuly")
+    
+   } catch (error) {
+      console.log(`Something went wrong ${error.message}`)
+
+   }
+
+
+})
+
+// Update data of User
+app.patch("/user" , async(req,res) =>{
+
+   const userEmail = req.body.emailId;
+   try {
+     const result = await UserModel.updateOne({emailId: userEmail},
+        {$set: { firstName: "Himanshu" } }
+      )
+      if (result.matchedCount === 0) {
+      console.log('User not found');
+    } else {
+      console.log('Update successful');
+      res.send("Update User Data successful")
+    }
+    
+   } catch (error) {
+
+     console.log(`Something went wrong ${error.message}`)
+    
+   }
 
 })
 
