@@ -19,4 +19,6 @@
 
 => make post api ("/signup")
 => Wrap db save with try catch block to hanndle properly
-=>  
+=> make 2  get API (/user , /feed) 
+=> I had explore find , findOne ,findById method
+   

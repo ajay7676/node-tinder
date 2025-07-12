@@ -58,8 +58,24 @@ app.post("/signup" , async(req , res) => {
   })
 
 // Feed API GET/feed get all the users from the database
+app.get("/feed" ,async(req, res) => {
+  //  const usersEmail = req.body.emailId;
 
-app.get("/feed" , )
+    try {
+      const users =  await UserModel.find({})
+       if(!users){
+         res.send("Users are not exist");
+       }else{
+           res.send(users)
+       }
+      
+    } catch (error) {
+       console.log(`Something went wrong ${error.message}`)
+    }
+
+
+
+})
 
 connectDB()
   .then(() => {
