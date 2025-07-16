@@ -96,21 +96,21 @@ app.delete("/user" , async(req,res) =>{
 // Update data of User
 app.patch("/user" , async(req,res) =>{
 
-   const userEmail = req.body.emailId;
+   const userId = req.body.userId;
+   const data = req.body;
    try {
-     const result = await UserModel.updateOne({emailId: userEmail},
-        {$set: { firstName: "Himanshu" } }
-      )
-      if (result.matchedCount === 0) {
-      console.log('User not found');
-    } else {
-      console.log('Update successful');
-      res.send("Update User Data successful")
-    }
+      const result = await UserModel.findByIdAndUpdate({_id : userId}, data, {
+        returnDocument: "after",
+        runValidators : true
+
+      }) 
+       console.log(result);
+       res.send("User updated sucessfully")
     
    } catch (error) {
 
      console.log(`Something went wrong ${error.message}`)
+     res.status(404).send(`Update failed : ${error.message}`)
     
    }
 

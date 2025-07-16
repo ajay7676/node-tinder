@@ -14,7 +14,7 @@ const userSchema = new Schema({
     emailId : {
         type : String, 
         lowercase: true,
-        required : true,
+        required : true, 
         trim: true,
         unique: true
     },
@@ -28,7 +28,7 @@ const userSchema = new Schema({
     gender : {
         type : String,
        validate(value){
-          if(["male" , "female" , "others"].includes(value)){
+          if(!["male" , "female" , "others"].includes(value)){
             throw new Error("Gender data is not vaild")
           }
        }
@@ -46,7 +46,10 @@ const userSchema = new Schema({
 
     }
 
-})
+},
+ { timestamps: true }
+
+)
 
 // Createing Schema  Model
  const UserModel = mongoose.model("User" , userSchema);
