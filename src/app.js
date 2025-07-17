@@ -12,8 +12,12 @@ app.post("/signup" , async(req , res) => {
   //  console.log(req.body)
       // Creating  a new instance of the User Model
       // await UserModel.init();
+        const data = req.body;
         const user = new UserModel(req.body);
         try {
+            if(data?.skills.length > 10){
+             throw new Error("Skills cannot be more then 10")
+           }
            await user.save();
            res.send("User Added Successfuly")
         } catch (error) {
@@ -80,7 +84,9 @@ app.get("/feed" ,async(req, res) => {
 
 app.delete("/user" , async(req,res) =>{
    const userId = req.body.userId
+   
    try {
+    
     const user = await UserModel.findOneAndDelete({ _id:  userId});
      console.log(user)
       res.send("User is Delete Successfuly")
@@ -98,6 +104,14 @@ app.patch("/user" , async(req,res) =>{
 
    const userId = req.body.userId;
    const data = req.body;
+   const ALLOWED_UPDATES =["photoUrl" , "about" , "gender" , "age" , "skills"];
+   const isUpdateAllowed = Object.keys(data).every((k) => ALLOWED_UPDATES.includes(k));
+   if(!isUpdateAllowed){
+     throw new Error ("Update is not allowed")
+   }
+   if(data?.skills.length > 10){
+    throw new Error("Skills cannot be more then 10")
+   }
    try {
       const result = await UserModel.findByIdAndUpdate({_id : userId}, data, {
         returnDocument: "after",

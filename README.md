@@ -21,4 +21,11 @@
 => Wrap db save with try catch block to hanndle properly
 => make 2  get API (/user , /feed) 
 => I had explore find , findOne ,findById method
+
+=> Add timestamps to the userSchema
+=> Add API level validation on Patch request & Signup post api
+=> DATA Sanitizing - Add API validation for each field
+
+
+
    
