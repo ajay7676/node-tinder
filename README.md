@@ -28,5 +28,11 @@
  => Install Vaildator & Explore validator functionalities likes email , password & photo URL
 
 
+=> made an utils folder to validate signup form data
+=> Installed Bcrypt npm for enciption password
+=> Create PasswordHash using bcrypt.hash & save the user is encrypted password
+=> 
+
+
 
    
