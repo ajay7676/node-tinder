@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/database");
 const UserModel = require("./model/user");
 const { vilidateSignupData } = require("./utils/validation");
- const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -16,23 +16,40 @@ app.post("/signup", async (req, res) => {
     // validation of data
     vilidateSignupData(req);
     // Encrypt the password
-     const {firstName ,lastName ,emailId,password} = req.body
-    const  passwordHash = await bcrypt.hash(password , 10);
-     console.log(passwordHash)
+    const { firstName, lastName, emailId, password } = req.body;
+    const passwordHash = await bcrypt.hash(password, 10);
+    console.log(passwordHash);
     const data = req.body;
     // Creating  a new instance of the User Model
-    const user = new UserModel(
-     {
+    const user = new UserModel({
       firstName,
       lastName,
       emailId,
-      password: passwordHash
-     }
-    );
+      password: passwordHash,
+    });
     await user.save();
     res.send("User Added Successfuly");
   } catch (error) {
     res.status(404).send(`Error :: ${error.message}`);
+  }
+});
+
+//  User login through email & password
+app.post("/login", async (req, res) => {
+  try {
+    const { emailId, password } = req.body;
+    const user = await UserModel.findOne({ emailId: emailId });
+    if (!user) {
+      throw new Error("Invalid Credentail");
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (isPasswordValid) {
+      res.send("Login is Successful");
+    } else {
+      throw new Error("Invalid Credentail");
+    }
+  } catch (error) {
+     res.status(400).send(`Error :: ${error.message}`)
   }
 });
 // Get user by email
