@@ -33,6 +33,10 @@
 => Create PasswordHash using bcrypt.hash & save the user is encrypted password
 => Made Login API & test with email & password
 
+=> Save Cookie in Client or broswer
+=> Install cookieparser npm to read cookie 
+=> Install 
+
 
 
    
