@@ -3,12 +3,14 @@ const connectDB = require("./config/database");
 const UserModel = require("./model/user");
 const { vilidateSignupData } = require("./utils/validation");
 const bcrypt = require("bcrypt");
+const cookieparser = require("cookie-parser")
 
 const app = express();
 
 const port = 7777;
 
 app.use(express.json());
+app.use(cookieparser())
 
 app.post("/signup", async (req, res) => {
   // await UserModel.init();
@@ -44,6 +46,7 @@ app.post("/login", async (req, res) => {
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (isPasswordValid) {
+      res.cookie('token', 'as@121SDsdf123&*EQ&*WRY)*EH&#A()_W(I(EWuee8 w3')
       res.send("Login is Successful");
     } else {
       throw new Error("Invalid Credentail");
@@ -52,6 +55,17 @@ app.post("/login", async (req, res) => {
      res.status(400).send(`Error :: ${error.message}`)
   }
 });
+
+
+// Get Profile Data
+
+app.get("/profile" , async(req, res) => {
+   
+  const cookies = req.cookies;
+   console.log(cookies);
+   res.send("Reading Cookie")
+
+})
 // Get user by email
 app.get("/user", async (req, res) => {
   const userEmail = req.body.emailId;
