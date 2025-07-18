@@ -3,14 +3,15 @@ const connectDB = require("./config/database");
 const UserModel = require("./model/user");
 const { vilidateSignupData } = require("./utils/validation");
 const bcrypt = require("bcrypt");
-const cookieparser = require("cookie-parser")
+const cookieParser = require("cookie-parser")
+const jwt = require("jsonwebtoken")
 
 const app = express();
 
 const port = 7777;
 
 app.use(express.json());
-app.use(cookieparser())
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
   // await UserModel.init();
@@ -20,7 +21,6 @@ app.post("/signup", async (req, res) => {
     // Encrypt the password
     const { firstName, lastName, emailId, password } = req.body;
     const passwordHash = await bcrypt.hash(password, 10);
-    console.log(passwordHash);
     const data = req.body;
     // Creating  a new instance of the User Model
     const user = new UserModel({
@@ -46,7 +46,11 @@ app.post("/login", async (req, res) => {
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (isPasswordValid) {
-      res.cookie('token', 'as@121SDsdf123&*EQ&*WRY)*EH&#A()_W(I(EWuee8 w3')
+
+      // Creating JWT Token
+       const token = await jwt.sign({_id: user._id} , "DEV@Tinder$790");
+      // Add the token to cookie & send response back to the user
+      res.cookie('token', token)
       res.send("Login is Successful");
     } else {
       throw new Error("Invalid Credentail");
@@ -60,10 +64,18 @@ app.post("/login", async (req, res) => {
 // Get Profile Data
 
 app.get("/profile" , async(req, res) => {
-   
-  const cookies = req.cookies;
-   console.log(cookies);
-   res.send("Reading Cookie")
+  const {token} = req.cookies;
+  if (!token) {
+    return res.status(401).send("Token not found. Please login first.");
+  }
+  try {
+    const decoded = jwt.verify(token, "DEV@Tinder$790");
+    const { _id } = decoded;
+    const user = await UserModel.findById({_id})
+    res.send(user);
+  } catch (error) {
+    res.status(401).send("Invalid or expired token.");
+  }
 
 })
 // Get user by email

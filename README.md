@@ -33,10 +33,13 @@
 => Create PasswordHash using bcrypt.hash & save the user is encrypted password
 => Made Login API & test with email & password
 
-=> Save Cookie in Client or broswer
 => Install cookieparser npm to read cookie 
-=> Install 
-
+=> Save Cookie in Client or broswer
+=> Install npm install jsonwebtoken
+=> Creating jwt token
+=> Add token into cookies
+=> set the cookie with login api (/login)
+=> Send token with req of every api like get profile  (/profile)
 
 
    
