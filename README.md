@@ -34,12 +34,14 @@
 => Made Login API & test with email & password
 
 => Install cookieparser npm to read cookie 
+=> Just send to dummy cookies data 
 => Save Cookie in Client or broswer
 => Install npm install jsonwebtoken
 => Creating jwt token
 => Add token into cookies
-=> set the cookie with login api (/login)
-=> Send token with req of every api like get profile  (/profile)
+=> In Login API , after email & password validation set the cookie with login api (/login)
+=> Send token with req of every api like get profile  
+=> read the cookie inside you profile API& find the looged User
 
 
    
