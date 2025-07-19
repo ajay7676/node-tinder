@@ -45,11 +45,11 @@ app.post("/login", async (req, res) => {
     if (!user) {
       throw new Error("Invalid Credentail");
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await user.validatePassword(password);
     if (isPasswordValid) {
 
       // Creating JWT Token
-       const token = await jwt.sign({_id: user._id} , "DEV@Tinder$790", {expiresIn: "1d"});
+       const token = await user.getJWT();
       // Add the token to cookie & send response back to the user
       res.cookie('token', token ,{expires: new Date(Date.now() + 2 * 3600000)}
        // cookie will be removed after 8 hours
