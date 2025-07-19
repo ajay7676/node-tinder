@@ -42,6 +42,7 @@
 => In Login API , after email & password validation set the cookie with login api (/login)
 => Send token with req of every api like get profile  
 => read the cookie inside you profile API& find the looged User
+=>  create userAuth middleware for authentication & set expires time in jwt & cookies
 
 
    
