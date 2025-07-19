@@ -44,8 +44,13 @@
 => read the cookie inside you profile API& find the looged User
 =>  create userAuth middleware for authentication & set expires time in jwt & cookies
 
-
 => Create userSchema Method to getJWT() & validatePassword()
+
+=> finalize some api list . we will use in App
+=> Create routes for all api & grouping 
+=> create routes  Like (authRouter,profileRoute ,requestsRouter )
+=> Move all api from app.js to routes according to route
+=> Import All express Router , we difine in routes folder like   (authRouter,profileRoute ,requestsRouter )
 
 
 
