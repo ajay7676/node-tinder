@@ -45,6 +45,9 @@
 =>  create userAuth middleware for authentication & set expires time in jwt & cookies
 
 
+=> Create userSchema Method to getJWT() & validatePassword()
+
+
 
 
 
