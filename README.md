@@ -50,7 +50,7 @@
 => Create routes for all api & grouping 
 => create routes  Like (authRouter,profileRoute ,requestsRouter )
 => Move all api from app.js to routes according to route
-=> Import All express Router , we difine in routes folder like   (authRouter,profileRoute ,requestsRouter )
+=> Import All express Router in app.js , we difine in routes folder like   (authRouter,profileRoute ,requestsRouter )
 
 
 
