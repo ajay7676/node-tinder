@@ -25,6 +25,11 @@ const validateEditProfileData = (req) => {
 
       return isEditAllowed; // return bookean vakue
 }
+// const validateStorngPassword = (req) => {
+//     const data = req.body;
+//      const allowEditFiled = ["passowrd"];
+//      const isEditAllowed = Object.keys()
+// }
 
 module.exports = {
     vilidateSignupData,

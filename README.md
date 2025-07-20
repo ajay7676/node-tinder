@@ -57,6 +57,13 @@
 => Implement validation in api , user logined or not , allowed updated filed for edit api & update to exting data
 
 
+=> Create Update Password API (/profile/password)
+=> -- Comapare  req.body.password & res.user.password(LoggedInUser.password) using  bcrypt.compare(password , LoggedInUser.password)
+=>  After update new password in Database
+
+s
+
+
 
 
 
