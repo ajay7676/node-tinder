@@ -17,7 +17,16 @@ const vilidateSignupData = (req) => {
              throw new Error("Plase enter strong password")
         }
 }
+const validateEditProfileData = (req) => {
+
+      const data = req.body;
+      const allowEditFiled = ["firstName" , "lastName" , "emailId" , "age" , "gender" , "about" ,"photoUrl" , "skills"];
+      const isEditAllowed = Object.keys(data).every((filed) => allowEditFiled.includes(filed));
+
+      return isEditAllowed; // return bookean vakue
+}
 
 module.exports = {
-    vilidateSignupData
+    vilidateSignupData,
+    validateEditProfileData
 }

@@ -52,6 +52,10 @@
 => Move all api from app.js to routes according to route
 => Import All express Router in app.js , we difine in routes folder like   (authRouter,profileRoute ,requestsRouter )
 
+=> Create POST /logout api
+=> Create PATCH /profile/edit api
+=> Implement validation in api , user logined or not , allowed updated filed for edit api & update to exting data
+
 
 
 
