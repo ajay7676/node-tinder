@@ -9,7 +9,7 @@
 
 
 - POST /request/send/interested/:userId
-- POST /request/send/interested/:userId
+- POST /request/send/ignored/:userId
 - POST /request/review/accepeted/:reuestedId
 - POST /request/review/rejected/:reuestedId
 

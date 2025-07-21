@@ -61,7 +61,7 @@
 => -- Comapare  req.body.password & res.user.password(LoggedInUser.password) using  bcrypt.compare(password , LoggedInUser.password)
 =>  After update new password in Database
 
-s
+
 
 
 
