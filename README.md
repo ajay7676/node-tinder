@@ -61,6 +61,10 @@
 => -- Comapare  req.body.password & res.user.password(LoggedInUser.password) using  bcrypt.compare(password , LoggedInUser.password)
 =>  After update new password in Database
 
+=> Create Connection Request Schema 
+ => Create /request/send/:status/:toUserId Api for interested & ignored request
+ => Create /request/review/:status/:requestedId  Api for  accepeted  or rejected request
+
 
 
 
