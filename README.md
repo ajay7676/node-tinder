@@ -63,7 +63,7 @@
 
 => Create Connection Request Schema 
  => Create /request/send/:status/:toUserId Api for interested & ignored request
- => Create /request/review/:status/:requestedId  Api for  accepeted  or rejected request
+ => Create /request/review/:status/:requestedId  Api for  accepeted  or rejected request & validate res.body & connection 
 
 
 

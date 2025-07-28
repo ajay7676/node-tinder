@@ -13,8 +13,8 @@
 - POST /request/review/accepeted/:reuestedId
 - POST /request/review/rejected/:reuestedId
 
-- GET /connections
 - GET /requests/recived 
+- GET /connections
 - GET /feed - Gets you  the profiles of oter users on platforms
 
 
