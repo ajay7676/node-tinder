@@ -50,5 +50,11 @@ userRouter.get("/user/requests/recived", userAuth, async (req, res) => {
      }
 
  });
-
+userRouter.get("/feed" , userAuth , async(req,res) => {
+   try {
+    
+   } catch (error) {
+      res.status(400).json("Error" + error.message)
+   }
+})
 module.exports = userRouter;
