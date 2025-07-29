@@ -60,7 +60,7 @@
 => Create Update Password API (/profile/password)
 => -- Comapare  req.body.password & res.user.password(LoggedInUser.password) using  bcrypt.compare(password , LoggedInUser.password)
 =>  After update new password in Database
-
+        
 => Create Connection Request Schema 
  => Create /request/send/:status/:toUserId Api for interested & ignored request
  => Create /request/review/:status/:requestedId  Api for  accepeted  or rejected request & validate res.body & connection 
@@ -70,6 +70,20 @@
  => combine relation between ConnectionRequestModel & UserModel using ref Like (ref:  ref: "User") & populate data according 
 
 => Create /user/connections API 
+
+
+=> Create /feed api of user & exlore condition like (nid,ne)
+
+=> Creating Pagination for feed page
+
+/feed?page=1&limit=10 =>1-10  
+
+/feed?page=2&limit=10 =>11-20
+
+/feed?page=3&limit=10 =>21-30
+
+/feed?page=4&limit=10 =>31-40
+
 
 
 
