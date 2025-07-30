@@ -6,7 +6,8 @@
     try {
       const{token} = req.cookies;
       if(!token){
-         throw new Error("Token is not Valid .... !!!!");
+         // throw new Error("Token is not Valid .... !!!!");
+         res.status(401).send("Please Login")
       }
       // Verify the JSW with sceret key
       const decodeToken = await jwt.verify(token , "DEV@Tinder$790");

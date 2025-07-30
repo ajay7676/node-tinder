@@ -48,12 +48,14 @@ authRouter.post("/login", async (req, res) => {
       res.cookie('token', token ,{expires: new Date(Date.now() + 2 * 3600000)}
        // cookie will be removed after 8 hours
       )
-      res.send("Login is Successful");
+         res.json({message: "Login Successfully" , data: user})
+
     } else {
       throw new Error("Invalid Credentail");
     }
   } catch (error) {
-     res.status(400).send(`Error :: ${error.message}`)
+     console.log(error)
+     res.status(401).send(`${error}`)
   }
 });
 
@@ -63,6 +65,6 @@ authRouter.post("/logout" , async(req,res) =>{
      res.cookie("token" , null , {
       expires: new Date(Date.now())
      });
-     res.send("Logout SuccessFully")
+     res.json("Logout Successfully")
 })
 module.exports = authRouter; 

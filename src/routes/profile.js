@@ -14,6 +14,7 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
     res.send(user);
   } catch (error) {
     console.log(`ERROR :: ${error.message}`);
+    res.status(401).json({message: "Unauthorized User" , data : error.message})
   }
 });
 
