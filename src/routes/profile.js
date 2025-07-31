@@ -18,39 +18,37 @@ profileRouter.get("/profile/view", userAuth, async (req, res) => {
   }
 });
 
-profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
+profileRouter.put("/profile/edit", userAuth, async (req, res) => {
   try {
     if(!validateEditProfileData(req)){
         throw new Error ("Profile Edit is not possiable")
     }
-    const LoggedInUser = req.user;
-     console.log(LoggedInUser)
-    Object.keys(req.body).forEach((key) => LoggedInUser[key] = req.body[key]);
-    await LoggedInUser.save();
-    //  res.send(`Hi, ${LoggedInUser.firstName} Your Profile  updated Successfully`);
-     res.json({ message :`Hi, ${LoggedInUser.firstName} Your Profile  updated Successfully` ,
-      data: LoggedInUser 
+    const loggedInUser = req.user;
+    const userr=  Object.keys(req.body).forEach((key) => (loggedInUser[key] = req.body[key]));
+     await loggedInUser.save();
+    //  res.send(`Hi, ${loggedInUser.firstName} Your Profile  updated Successfully`);
+    res.json({ message :`Hi, ${loggedInUser.firstName} Your Profile  updated Successfully` ,
+      data: loggedInUser 
     });
     
   } catch (error) {
-    console.log(`ERROR :: ${error.message}`);
-     res.status(400).json({ error: error.message });
+  res.status(400).send("ERROR : " + error.message);
   }
 });
 profileRouter.patch("/profile/password" , userAuth , async(req,res) => {
    try {
       const { password ,newpassword } = req.body;
-       const LoggedInUser = req.user;
+       const loggedInUser = req.user;
       //  Compare old password with hashed password
-       const isMatch = await bcrypt.compare(password , LoggedInUser.password);
+       const isMatch = await bcrypt.compare(password , loggedInUser.password);
        if (!isMatch) return res.status(400).send("Old password is incorrect");
 
       //Hash new password
        const hashedassword = await  bcrypt.hash(newpassword , 10);
-       LoggedInUser.password = hashedassword;
+       loggedInUser.password = hashedassword;
 
         // Save User in Database
-        await LoggedInUser.save();
+        await loggedInUser.save();
         res.send("Profile password is updated")
 
    } catch (error) {

@@ -43,7 +43,7 @@ const userSchema = new Schema({
     },
     gender : {
         type : String,
-        enum:{
+         enum:{
              values:["male", "female", "other"],
              message: `{VALUES} is incorrect gender type`
         }

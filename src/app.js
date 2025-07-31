@@ -15,15 +15,23 @@ const app = express();
 
 const port = 7777;
 
-app.use(cors(
-  {
-    origin: "http://localhost:3000/",
-    credentials: true
+// app.use(cors(
+//   {
+//     origin: "http://localhost:3000",
+//     credentials: true
 
-  }
-))
+//   }
+// ))
+// app.use(express.json());
+// app.use(cookieParser());
+
+app.use(cors({ origin: "http://localhost:3000", 
+  credentials: true,
+ methods: ["GET", "POST", "PATCH", "DELETE", "PUT" ,"OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"] }));
 app.use(express.json());
 app.use(cookieParser());
+
 
 app.use("/" , authRouter)
 app.use("/" , profileRouter)
