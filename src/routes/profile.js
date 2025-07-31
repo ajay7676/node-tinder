@@ -24,6 +24,7 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
         throw new Error ("Profile Edit is not possiable")
     }
     const LoggedInUser = req.user;
+     console.log(LoggedInUser)
     Object.keys(req.body).forEach((key) => LoggedInUser[key] = req.body[key]);
     await LoggedInUser.save();
     //  res.send(`Hi, ${LoggedInUser.firstName} Your Profile  updated Successfully`);
@@ -33,6 +34,7 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
     
   } catch (error) {
     console.log(`ERROR :: ${error.message}`);
+     res.status(400).json({ error: error.message });
   }
 });
 profileRouter.patch("/profile/password" , userAuth , async(req,res) => {
