@@ -42,18 +42,19 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
         "firstName",
         "lastName",
         "about",
+        "photoUrl",
         "skills",
         "age",
         "gender",
       ])
-      .populate("toUserId", ["firstName", "lastName", "about", "skills"]);
+      .populate("toUserId", ["firstName", "lastName", "about","photoUrl", "skills"]);
     const data = connectionRequests.map((user) => {
       if (user.fromUserId._id.toString() === loggedInUser._id.toString()) {
         return user.toUserId;
       }
       return user.fromUserId;
     });
-    res.json({ data: connectionRequests });
+    res.json({ data: data });
   } catch (error) {
     res.status(400).send(`ERROR :: ${error.message}`);
   }
