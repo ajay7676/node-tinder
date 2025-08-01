@@ -14,7 +14,7 @@ userRouter.get("/user/requests/recived", userAuth, async (req, res) => {
     const connectionRequest = await ConnectRequestModel.find({
       toUserId: loggedInUser._id,
       status: "interested",
-    }).populate("fromUserId", ["firstName", "lastName", "about", "skills"]);
+    }).populate("fromUserId", USER_SAFE_DATA);
     if (!connectionRequest) {
       return res.status(401).json({ message: "User is not found" });
     }
