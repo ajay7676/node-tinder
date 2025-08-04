@@ -42,7 +42,7 @@ connectDB()
   .then(() => {
     console.log(`Database connection is established`);
     app.listen(port, () => {
-      console.log(`Serveris running port ${port}`);
+      console.log(`Server is running port ${port}`);
     });
   })
   .catch(() => {
