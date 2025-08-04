@@ -86,11 +86,66 @@
 
 
 /Deploy in AWS 
+1- Open window Shell
+2- Connect with AWS
+3- make clone of backend project 
+4- after that goes inside backend project in shell
+5-npm i 
+6- npm run start => but it will run forsome time after sometime it will break 
+7- install pm2 globally  for 24*7 to run 
+   npm install pm2 -g
+   pm2 start app.js
+➡️ Starts your Node.js app with PM2 and keeps it running in background.
+pm2 list
+➡️ Shows all apps managed by PM2 (name, status, memory, CPU, etc.).
+pm2 restart app_name_or_id
+➡️ Restarts a specific app by name or ID.
+
+pm2 stop app_name_or_id
+Stops the app (but doesn’t delete from PM2 memory).
+
+pm2 delete app_name_or_id
+Stops and removes the app from PM2 process list.
+
+pm2 startup
+enerates a command — copy-paste it.
+It helps PM2 auto-run apps on EC2 restart.
+
+pm2 save
+pm2 monit
+pm2 logs
+pm2 logs app_name
+pm2 show app_name
+pm2 reload app_name
 
 
+pm2 kill
+➡️ Stops all apps and shuts down PM2 daemon.
 
 
+Nginx Configration :
 
+Step 1. sudo nano /etc/nginx/sites-available/default
+
+Step 2. server_name 15.207.89.13;
+
+Step 3. Step 2: Edit inside server {} block
+location /api/ {
+    proxy_pass http://localhost:7777/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+}
+
+Step 4: Save the file
+Press: Ctrl + O → press Enter (to save)
+
+Then: Ctrl + X (to exit nano)
+ 
+ Step 4: Restart NGINX to apply changes
+ sudo systemctl restart nginx
 
 
    
