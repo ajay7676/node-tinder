@@ -1,0 +1,1 @@
+export const url = "mongodb+srv://ajaychauhanpp44:e9I5HdTHAPB6YNLw@namaste-node.5r8ejyg.mongodb.net/devTinder"
